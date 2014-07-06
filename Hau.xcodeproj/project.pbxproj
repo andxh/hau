@@ -19,6 +19,23 @@
 		49FF192E1969E55F00726484 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FF19161969E55F00726484 /* UIKit.framework */; };
 		49FF19361969E55F00726484 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49FF19341969E55F00726484 /* InfoPlist.strings */; };
 		49FF19381969E55F00726484 /* HauTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF19371969E55F00726484 /* HauTests.m */; };
+		49FF19471969E5DF00726484 /* APIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF19461969E5DF00726484 /* APIController.m */; };
+		49FF194B1969E71300726484 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF19491969E71300726484 /* RootVC.m */; };
+		49FF194C1969E71300726484 /* RootVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49FF194A1969E71300726484 /* RootVC.xib */; };
+		49FF19501969E90900726484 /* hau-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 49FF194F1969E90900726484 /* hau-logo.png */; };
+		49FF19531969E9F100726484 /* ArchiveC.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF19521969E9F100726484 /* ArchiveC.m */; };
+		49FF19571969EA0F00726484 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF19561969EA0F00726484 /* EGOCache.m */; };
+		49FF19681969EC2E00726484 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF19631969EC2E00726484 /* TFHpple.m */; };
+		49FF19691969EC2E00726484 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF19651969EC2E00726484 /* TFHppleElement.m */; };
+		49FF196A1969EC2E00726484 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF19671969EC2E00726484 /* XPathQuery.m */; };
+		49FF196C1969ED2300726484 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FF196B1969ED2300726484 /* libxml2.dylib */; };
+		49FF196F1969F1DD00726484 /* JournalVolume.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF196E1969F1DD00726484 /* JournalVolume.m */; };
+		49FF19721969F98A00726484 /* VolumeIssue.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF19711969F98A00726484 /* VolumeIssue.m */; };
+		49FF19751969FE7500726484 /* JSONBackedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF19741969FE7500726484 /* JSONBackedModel.m */; };
+		49FF1979196A048300726484 /* IssueTableOfContentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF1977196A048300726484 /* IssueTableOfContentsVC.m */; };
+		49FF197A196A048300726484 /* IssueTableOfContentsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49FF1978196A048300726484 /* IssueTableOfContentsVC.xib */; };
+		49FF197E196A059F00726484 /* IssuesListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF197C196A059F00726484 /* IssuesListVC.m */; };
+		49FF197F196A059F00726484 /* IssuesListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49FF197D196A059F00726484 /* IssuesListVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +65,35 @@
 		49FF19331969E55F00726484 /* HauTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HauTests-Info.plist"; sourceTree = "<group>"; };
 		49FF19351969E55F00726484 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49FF19371969E55F00726484 /* HauTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HauTests.m; sourceTree = "<group>"; };
+		49FF19451969E5DF00726484 /* APIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIController.h; sourceTree = "<group>"; };
+		49FF19461969E5DF00726484 /* APIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIController.m; sourceTree = "<group>"; };
+		49FF19481969E71300726484 /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
+		49FF19491969E71300726484 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
+		49FF194A1969E71300726484 /* RootVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootVC.xib; sourceTree = "<group>"; };
+		49FF194F1969E90900726484 /* hau-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hau-logo.png"; sourceTree = "<group>"; };
+		49FF19511969E9F100726484 /* ArchiveC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchiveC.h; sourceTree = "<group>"; };
+		49FF19521969E9F100726484 /* ArchiveC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchiveC.m; sourceTree = "<group>"; };
+		49FF19551969EA0F00726484 /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
+		49FF19561969EA0F00726484 /* EGOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOCache.m; sourceTree = "<group>"; };
+		49FF19621969EC2E00726484 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		49FF19631969EC2E00726484 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		49FF19641969EC2E00726484 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		49FF19651969EC2E00726484 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		49FF19661969EC2E00726484 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		49FF19671969EC2E00726484 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		49FF196B1969ED2300726484 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		49FF196D1969F1DD00726484 /* JournalVolume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalVolume.h; sourceTree = "<group>"; };
+		49FF196E1969F1DD00726484 /* JournalVolume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalVolume.m; sourceTree = "<group>"; };
+		49FF19701969F98A00726484 /* VolumeIssue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeIssue.h; sourceTree = "<group>"; };
+		49FF19711969F98A00726484 /* VolumeIssue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeIssue.m; sourceTree = "<group>"; };
+		49FF19731969FE7500726484 /* JSONBackedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONBackedModel.h; sourceTree = "<group>"; };
+		49FF19741969FE7500726484 /* JSONBackedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONBackedModel.m; sourceTree = "<group>"; };
+		49FF1976196A048300726484 /* IssueTableOfContentsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssueTableOfContentsVC.h; sourceTree = "<group>"; };
+		49FF1977196A048300726484 /* IssueTableOfContentsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssueTableOfContentsVC.m; sourceTree = "<group>"; };
+		49FF1978196A048300726484 /* IssueTableOfContentsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IssueTableOfContentsVC.xib; sourceTree = "<group>"; };
+		49FF197B196A059F00726484 /* IssuesListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssuesListVC.h; sourceTree = "<group>"; };
+		49FF197C196A059F00726484 /* IssuesListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssuesListVC.m; sourceTree = "<group>"; };
+		49FF197D196A059F00726484 /* IssuesListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IssuesListVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49FF196C1969ED2300726484 /* libxml2.dylib in Frameworks */,
 				49FF19151969E55F00726484 /* CoreGraphics.framework in Frameworks */,
 				49FF19171969E55F00726484 /* UIKit.framework in Frameworks */,
 				49FF19131969E55F00726484 /* Foundation.framework in Frameworks */,
@@ -96,6 +143,7 @@
 		49FF19111969E55F00726484 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49FF196B1969ED2300726484 /* libxml2.dylib */,
 				49FF19121969E55F00726484 /* Foundation.framework */,
 				49FF19141969E55F00726484 /* CoreGraphics.framework */,
 				49FF19161969E55F00726484 /* UIKit.framework */,
@@ -107,10 +155,15 @@
 		49FF19181969E55F00726484 /* Hau */ = {
 			isa = PBXGroup;
 			children = (
+				49FF194D1969E90900726484 /* assets */,
+				49FF19441969E5A700726484 /* External */,
+				49FF19431969E59500726484 /* API Controllers */,
+				49FF19421969E58C00726484 /* Models */,
+				49FF19411969E58100726484 /* Views and VCs */,
+				49FF19191969E55F00726484 /* Supporting Files */,
+				49FF19241969E55F00726484 /* Images.xcassets */,
 				49FF19211969E55F00726484 /* AppDelegate.h */,
 				49FF19221969E55F00726484 /* AppDelegate.m */,
-				49FF19241969E55F00726484 /* Images.xcassets */,
-				49FF19191969E55F00726484 /* Supporting Files */,
 			);
 			path = Hau;
 			sourceTree = "<group>";
@@ -142,6 +195,93 @@
 				49FF19341969E55F00726484 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		49FF19411969E58100726484 /* Views and VCs */ = {
+			isa = PBXGroup;
+			children = (
+				49FF19481969E71300726484 /* RootVC.h */,
+				49FF19491969E71300726484 /* RootVC.m */,
+				49FF194A1969E71300726484 /* RootVC.xib */,
+				49FF1976196A048300726484 /* IssueTableOfContentsVC.h */,
+				49FF1977196A048300726484 /* IssueTableOfContentsVC.m */,
+				49FF1978196A048300726484 /* IssueTableOfContentsVC.xib */,
+				49FF197B196A059F00726484 /* IssuesListVC.h */,
+				49FF197C196A059F00726484 /* IssuesListVC.m */,
+				49FF197D196A059F00726484 /* IssuesListVC.xib */,
+			);
+			name = "Views and VCs";
+			sourceTree = "<group>";
+		};
+		49FF19421969E58C00726484 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				49FF19731969FE7500726484 /* JSONBackedModel.h */,
+				49FF19741969FE7500726484 /* JSONBackedModel.m */,
+				49FF196D1969F1DD00726484 /* JournalVolume.h */,
+				49FF196E1969F1DD00726484 /* JournalVolume.m */,
+				49FF19701969F98A00726484 /* VolumeIssue.h */,
+				49FF19711969F98A00726484 /* VolumeIssue.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		49FF19431969E59500726484 /* API Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				49FF19451969E5DF00726484 /* APIController.h */,
+				49FF19461969E5DF00726484 /* APIController.m */,
+				49FF19511969E9F100726484 /* ArchiveC.h */,
+				49FF19521969E9F100726484 /* ArchiveC.m */,
+			);
+			name = "API Controllers";
+			sourceTree = "<group>";
+		};
+		49FF19441969E5A700726484 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				49FF19611969EC2D00726484 /* Hpple */,
+				49FF19541969EA0F00726484 /* EGOCache */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
+		49FF194D1969E90900726484 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				49FF194E1969E90900726484 /* hau */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		49FF194E1969E90900726484 /* hau */ = {
+			isa = PBXGroup;
+			children = (
+				49FF194F1969E90900726484 /* hau-logo.png */,
+			);
+			path = hau;
+			sourceTree = "<group>";
+		};
+		49FF19541969EA0F00726484 /* EGOCache */ = {
+			isa = PBXGroup;
+			children = (
+				49FF19551969EA0F00726484 /* EGOCache.h */,
+				49FF19561969EA0F00726484 /* EGOCache.m */,
+			);
+			path = EGOCache;
+			sourceTree = "<group>";
+		};
+		49FF19611969EC2D00726484 /* Hpple */ = {
+			isa = PBXGroup;
+			children = (
+				49FF19621969EC2E00726484 /* TFHpple.h */,
+				49FF19631969EC2E00726484 /* TFHpple.m */,
+				49FF19641969EC2E00726484 /* TFHppleElement.h */,
+				49FF19651969EC2E00726484 /* TFHppleElement.m */,
+				49FF19661969EC2E00726484 /* XPathQuery.h */,
+				49FF19671969EC2E00726484 /* XPathQuery.m */,
+			);
+			path = Hpple;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,7 +360,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				49FF191D1969E55F00726484 /* InfoPlist.strings in Resources */,
+				49FF197A196A048300726484 /* IssueTableOfContentsVC.xib in Resources */,
 				49FF19251969E55F00726484 /* Images.xcassets in Resources */,
+				49FF194C1969E71300726484 /* RootVC.xib in Resources */,
+				49FF197F196A059F00726484 /* IssuesListVC.xib in Resources */,
+				49FF19501969E90900726484 /* hau-logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +383,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49FF19691969EC2E00726484 /* TFHppleElement.m in Sources */,
+				49FF19751969FE7500726484 /* JSONBackedModel.m in Sources */,
+				49FF197E196A059F00726484 /* IssuesListVC.m in Sources */,
+				49FF19531969E9F100726484 /* ArchiveC.m in Sources */,
+				49FF194B1969E71300726484 /* RootVC.m in Sources */,
+				49FF19721969F98A00726484 /* VolumeIssue.m in Sources */,
+				49FF19571969EA0F00726484 /* EGOCache.m in Sources */,
+				49FF196A1969EC2E00726484 /* XPathQuery.m in Sources */,
+				49FF19681969EC2E00726484 /* TFHpple.m in Sources */,
+				49FF19471969E5DF00726484 /* APIController.m in Sources */,
+				49FF196F1969F1DD00726484 /* JournalVolume.m in Sources */,
+				49FF1979196A048300726484 /* IssueTableOfContentsVC.m in Sources */,
 				49FF19231969E55F00726484 /* AppDelegate.m in Sources */,
 				49FF191F1969E55F00726484 /* main.m in Sources */,
 			);
@@ -361,6 +517,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hau/Hau-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "Hau/Hau-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -374,6 +535,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hau/Hau-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "Hau/Hau-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "RootVC.h"
 
 @implementation AppDelegate
 
@@ -14,6 +15,15 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    
+    self.window.rootViewController = [[UINavigationController alloc] init];
+    [(UINavigationController *)[self.window rootViewController] setNavigationBarHidden:YES];
+    
+    
+    RootVC *rvc = [[RootVC alloc] initWithNibName:NSStringFromClass([RootVC class]) bundle:nil];
+    [(UINavigationController *)self.window.rootViewController pushViewController:rvc animated:NO];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
