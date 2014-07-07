@@ -16,6 +16,7 @@
 @property (nonatomic,strong) NSString *issueURL;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSArray *sections;
+@property (nonatomic) BOOL showToc;
 
 - (instancetype)initWithElement:(TFHppleElement *)element;
 

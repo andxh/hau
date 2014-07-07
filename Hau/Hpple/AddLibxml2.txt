@@ -1,0 +1,6 @@
+Since hpple makes use of libxml2, you need to tell your project where to find the libxml2 headers, and also to link against it when building.
+To do this, select the project root at the top of the project navigator, go to Build Settings and search for “header search paths.” Enter the value for the Header Search Paths row as $(SDKROOT)/usr/include/libxml2 and press Enter. It should end up looking like this:
+
+Next select Build Phases and open the “Link Binary With Libraries” section. Click the (+) button and search for libxml2. Select libxml2.dylib and press Add. The project navigator should now look like this:
+
+

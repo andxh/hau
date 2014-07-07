@@ -144,8 +144,12 @@ static NSString *const kVolumesListCacheKey = @"volumes";
 - (void)updateIssue:(VolumeIssue *)issue
 {
     NSMutableURLRequest *request = [self GETRequestForEndpoint:nil];
-    [request setURL:[NSURL URLWithString:issue.issueURL]];
-    
+    if(issue.showToc){
+        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/showToc", issue.issueURL]]];
+    } else {
+        [request setURL:[NSURL URLWithString:issue.issueURL]];
+    }
+
     [NSURLConnection sendAsynchronousRequest:request
                                        queue: [NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
@@ -159,25 +163,31 @@ static NSString *const kVolumesListCacheKey = @"volumes";
                                    
                                    NSString *sectionsQ = @"//h4[@class='tocSectionTitle'] | //table[@class='tocArticle']";
                                    NSArray *sectionElements = [parser searchWithXPathQuery:sectionsQ];
-                                   NSMutableArray *sections = [NSMutableArray array];
-                                   IssueSection *section;
-                                   for(TFHppleElement *sectionEl in sectionElements){
-                                       if ([[sectionEl tagName] isEqualToString:@"h4"]) {
-                                           if (section) {
-                                               [sections addObject:section];
-                                           }
-                                          section = [[IssueSection alloc] initWithTitle:[sectionEl text]];
-                                       } else if ([[sectionEl tagName] isEqualToString:@"table"]){
-                                           IssueArticle *article = [[IssueArticle alloc] initWithElement: sectionEl];
-                                           [section addArticle:article];
+                                   if(sectionElements.count == 0) {
+                                       if(!issue.showToc){
+                                           issue.showToc = YES;
+                                           [self updateIssue:issue];
                                        }
+                                   } else {
+                                       NSMutableArray *sections = [NSMutableArray array];
+                                       IssueSection *section;
+                                       for(TFHppleElement *sectionEl in sectionElements){
+                                           if ([[sectionEl tagName] isEqualToString:@"h4"]) {
+                                               if (section) {
+                                                   [sections addObject:section];
+                                               }
+                                              section = [[IssueSection alloc] initWithTitle:[sectionEl text]];
+                                           } else if ([[sectionEl tagName] isEqualToString:@"table"]){
+                                               IssueArticle *article = [[IssueArticle alloc] initWithElement: sectionEl];
+                                               [section addArticle:article];
+                                           }
+                                       }
+                                       if (section) {
+                                           [sections addObject:section];
+                                       }
+                                       issue.sections = sections;
+                                       [self updateCacheWithIssue:issue];
                                    }
-                                   if (section) {
-                                       [sections addObject:section];
-                                   }
-                                   issue.sections = sections;
-                                   [self updateCacheWithIssue:issue];
-                                   
                                } else {
                                    
                                    
