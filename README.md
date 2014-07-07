@@ -14,7 +14,6 @@ PDFs can be sent to other apps (e.g. email, :x:note, etc.).
 - Callbacks for updating the view once downloading an issue is complete
 - "Loading" indicators
 - Design table cells to reflect author, pages ("make it look like the journal")
-- Handle earlier issue HTML formats (seems to not load Vol 3.1 or before)
 - Landscape orientation
 - iPhone views
 - Some kind of simple note taking ability
