@@ -9,6 +9,7 @@
 #import "IssueArticle.h"
 
 static NSString *const kArticleTitleQ = @"//td[@class='tocTitle']/a"; // absract link with title text
+static NSString *const kUnlinkedArticleTitleQ = @"//td[@class='tocTitle']"; // unlinked title text
 static NSString *const kArticlePDFQ = @"//td[@class='tocGalleys']/a"; // must replace "view" with "download"
 static NSString *const kArticleAuthorsQ = @"//td[@class='tocAuthors']";
 static NSString *const kArticlePagesQ = @"//td[@class='tocPages']";
@@ -37,6 +38,9 @@ static NSString *const kArticlePagesQ = @"//td[@class='tocPages']";
 + (NSString *)titleFromElement:(TFHppleElement *)element
 {
     TFHppleElement *el = [super firstElementFromElement:element forPath:kArticleTitleQ];
+    if(!el){
+        el = [super firstElementFromElement:element forPath:kUnlinkedArticleTitleQ];
+    }
     return [el text];
 }
 
