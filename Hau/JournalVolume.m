@@ -35,7 +35,7 @@ NSString *const kIssue = @"//div[@id='issue']";
 
 + (NSString *)volumeYearFromElement:(TFHppleElement *)element
 {
-    TFHppleElement *el = [JournalVolume firstElementFromElement:element forPath:kVolumeYear];
+    TFHppleElement *el = [super firstElementFromElement:element forPath:kVolumeYear];
     return [el text];
 }
 
@@ -50,12 +50,4 @@ NSString *const kIssue = @"//div[@id='issue']";
     return issues;
 }
 
-+ (TFHppleElement *)firstElementFromElement:(TFHppleElement *)element forPath:(NSString *)path
-{
-    NSArray *elements = [element searchWithXPathQuery:path];
-    if (elements.count > 0) {
-        return elements[0];
-    }
-    return nil;
-}
 @end

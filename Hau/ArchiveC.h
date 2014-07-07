@@ -7,6 +7,9 @@
 //
 
 #import "APIController.h"
+#import "JournalVolume.h"
+#import "VolumeIssue.h"
+#import "IssueArticle.h"
 
 @interface ArchiveC : APIController
 
@@ -16,5 +19,12 @@
 
 - (void)updateArchiveIndex;
 
+- (NSString *)cacheKeyForVolume:(JournalVolume *)volume;
+- (NSString *)cacheKeyForVolume:(JournalVolume *)volume issue:(VolumeIssue *)issue;
+
+- (void)updateIssue:(VolumeIssue *)issue;
+- (VolumeIssue *)volumeIssue:(NSIndexPath *)path;
+
+- (void)getPdfForIssue:(VolumeIssue *)issue article:(IssueArticle *)article success:(void(^)(NSString *fileURL))success;
 
 @end

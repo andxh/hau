@@ -10,4 +10,6 @@
 
 @interface RootVC : UIViewController
 
+- (void)showVolumeIssueAtPath:(NSIndexPath *)path;
+
 @end

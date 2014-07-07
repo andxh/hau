@@ -69,6 +69,19 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 	return instance;
 }
 
++ (instancetype)documentsCache {
+	static id instance;
+	
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+        NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *dfp = [searchPaths objectAtIndex: 0];
+		instance = [[[self class] alloc] initWithCacheDirectory:dfp];
+	});
+	
+	return instance;
+}
+
 - (id)init {
 	NSString* cachesDirectory = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
 	NSString* oldCachesDirectory = [[[cachesDirectory stringByAppendingPathComponent:[[NSProcessInfo processInfo] processName]] stringByAppendingPathComponent:@"EGOCache"] copy];

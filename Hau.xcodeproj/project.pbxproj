@@ -36,6 +36,8 @@
 		49FF197A196A048300726484 /* IssueTableOfContentsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49FF1978196A048300726484 /* IssueTableOfContentsVC.xib */; };
 		49FF197E196A059F00726484 /* IssuesListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF197C196A059F00726484 /* IssuesListVC.m */; };
 		49FF197F196A059F00726484 /* IssuesListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49FF197D196A059F00726484 /* IssuesListVC.xib */; };
+		49FF1982196A195D00726484 /* IssueArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF1981196A195D00726484 /* IssueArticle.m */; };
+		49FF1985196A1AAA00726484 /* IssueSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF1984196A1AAA00726484 /* IssueSection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,11 @@
 		49FF197B196A059F00726484 /* IssuesListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssuesListVC.h; sourceTree = "<group>"; };
 		49FF197C196A059F00726484 /* IssuesListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssuesListVC.m; sourceTree = "<group>"; };
 		49FF197D196A059F00726484 /* IssuesListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IssuesListVC.xib; sourceTree = "<group>"; };
+		49FF1980196A195D00726484 /* IssueArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssueArticle.h; sourceTree = "<group>"; };
+		49FF1981196A195D00726484 /* IssueArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssueArticle.m; sourceTree = "<group>"; };
+		49FF1983196A1AAA00726484 /* IssueSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssueSection.h; sourceTree = "<group>"; };
+		49FF1984196A1AAA00726484 /* IssueSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssueSection.m; sourceTree = "<group>"; };
+		49FF1986196A3E3700726484 /* libcommonCrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcommonCrypto.dylib; path = usr/lib/system/libcommonCrypto.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +150,7 @@
 		49FF19111969E55F00726484 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49FF1986196A3E3700726484 /* libcommonCrypto.dylib */,
 				49FF196B1969ED2300726484 /* libxml2.dylib */,
 				49FF19121969E55F00726484 /* Foundation.framework */,
 				49FF19141969E55F00726484 /* CoreGraphics.framework */,
@@ -222,6 +230,10 @@
 				49FF196E1969F1DD00726484 /* JournalVolume.m */,
 				49FF19701969F98A00726484 /* VolumeIssue.h */,
 				49FF19711969F98A00726484 /* VolumeIssue.m */,
+				49FF1980196A195D00726484 /* IssueArticle.h */,
+				49FF1981196A195D00726484 /* IssueArticle.m */,
+				49FF1983196A1AAA00726484 /* IssueSection.h */,
+				49FF1984196A1AAA00726484 /* IssueSection.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -390,6 +402,8 @@
 				49FF194B1969E71300726484 /* RootVC.m in Sources */,
 				49FF19721969F98A00726484 /* VolumeIssue.m in Sources */,
 				49FF19571969EA0F00726484 /* EGOCache.m in Sources */,
+				49FF1985196A1AAA00726484 /* IssueSection.m in Sources */,
+				49FF1982196A195D00726484 /* IssueArticle.m in Sources */,
 				49FF196A1969EC2E00726484 /* XPathQuery.m in Sources */,
 				49FF19681969EC2E00726484 /* TFHpple.m in Sources */,
 				49FF19471969E5DF00726484 /* APIController.m in Sources */,
@@ -523,6 +537,10 @@
 					"$(SDKROOT)/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "Hau/Hau-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -541,6 +559,10 @@
 					"$(SDKROOT)/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "Hau/Hau-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

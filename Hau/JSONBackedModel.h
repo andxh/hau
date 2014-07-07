@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TFHpple.h"
 
 @interface JSONBackedModel : NSObject
 
@@ -17,5 +18,6 @@
 - (NSString *)JSONString;
 - (void)pickValuesForKeysFromDictionary: (NSDictionary *)dict;
 
++ (TFHppleElement *)firstElementFromElement:(TFHppleElement *)element forPath:(NSString *)path;
 
 @end

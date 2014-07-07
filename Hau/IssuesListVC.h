@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSArray *volumes;
 
+@property (nonatomic, weak) id delegate;
+
 @end

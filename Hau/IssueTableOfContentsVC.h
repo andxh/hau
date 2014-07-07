@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VolumeIssue.h"
 
 @interface IssueTableOfContentsVC : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, weak) id delegate;
+@property (nonatomic, strong) VolumeIssue *issue;
 
 @end

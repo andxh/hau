@@ -9,6 +9,7 @@
 #import "JSONBackedModel.h"
 #import <objc/runtime.h>
 
+
 @implementation JSONBackedModel
 
 
@@ -66,7 +67,7 @@
         if(obj && obj != [NSNull null]){
             NSString *className = [propClasses objectForKey:key];
 
-            if([className isEqualToString:@"NSArray"]){
+            if([className isEqualToString:@"NSArray"] || [className isEqualToString:@"NSMutableArray"]){
                 NSMutableArray *classObjs = [NSMutableArray array];
                 Class propClass = [[self class] classForArrayProperty:key];
                 for (id classObj in obj){
@@ -148,6 +149,17 @@
     
     return pt;
 }
+
+#pragma XPath
++ (TFHppleElement *)firstElementFromElement:(TFHppleElement *)element forPath:(NSString *)path
+{
+    NSArray *elements = [element searchWithXPathQuery:path];
+    if (elements.count > 0) {
+        return elements[0];
+    }
+    return nil;
+}
+
 
 
 @end

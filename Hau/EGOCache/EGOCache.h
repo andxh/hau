@@ -37,6 +37,9 @@
 // Global cache for easy use
 + (instancetype)globalCache;
 
+// Global cache in documents dir
++ (instancetype)documentsCache;
+
 // Opitionally create a different EGOCache instance with it's own cache directory
 - (id)initWithCacheDirectory:(NSString*)cacheDirectory;
 

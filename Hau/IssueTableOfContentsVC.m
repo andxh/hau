@@ -8,11 +8,12 @@
 
 #import "IssueTableOfContentsVC.h"
 #import "VolumeIssue.h"
+#import "IssueSection.h"
+#import "IssueArticle.h"
 
 @interface IssueTableOfContentsVC ()
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) VolumeIssue *issue;
 
 @end
 
@@ -39,4 +40,49 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma TableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    //number of issues in volume
+    return ((IssueSection *)self.issue.sections[section]).articles.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *const kCellIdentifier = @"ArticleCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    if(!cell){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier];
+    }
+    
+    IssueArticle *article = ((IssueSection *)self.issue.sections[indexPath.section]).articles[indexPath.row];
+    
+    cell.textLabel.text = article.title;
+    
+    return cell;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.issue.sections.count;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+//    JournalVolume *jv = self.volumes[section];
+//    return jv.volumeYear;
+    
+    return ((IssueSection *)self.issue.sections[section]).title;
+}
+
+
+#pragma UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    [self.delegate performSelector:@selector(showIssue:articleAtPath:) withObject:self.issue withObject:indexPath];
+}
 @end
