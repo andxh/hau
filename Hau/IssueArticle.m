@@ -41,7 +41,7 @@ static NSString *const kArticlePagesQ = @"//td[@class='tocPages']";
     if(!el){
         el = [super firstElementFromElement:element forPath:kUnlinkedArticleTitleQ];
     }
-    return [el text];
+    return [[el text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 + (NSString *)pdfURLFromElement:(TFHppleElement *)element
@@ -54,13 +54,13 @@ static NSString *const kArticlePagesQ = @"//td[@class='tocPages']";
 + (NSString *)authorsFromElement:(TFHppleElement *)element
 {
     TFHppleElement *el = [super firstElementFromElement:element forPath:kArticleAuthorsQ];
-    return [el text];
+    return [[el text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 + (NSString *)pagesFromElement:(TFHppleElement *)element
 {
     TFHppleElement *el = [super firstElementFromElement:element forPath:kArticlePagesQ];
-    return [el text];
+    return [[el text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 @end

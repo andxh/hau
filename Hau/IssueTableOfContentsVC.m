@@ -10,12 +10,15 @@
 #import "VolumeIssue.h"
 #import "IssueSection.h"
 #import "IssueArticle.h"
+#import "IssueTableOfContentsTVCell.h"
 
 @interface IssueTableOfContentsVC ()
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end
+
+static NSString *const kCellIdentifier = @"ArticleCell";
 
 @implementation IssueTableOfContentsVC
 
@@ -32,6 +35,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([IssueTableOfContentsTVCell class])  bundle:nil]
+         forCellReuseIdentifier:kCellIdentifier];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,17 +55,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *const kCellIdentifier = @"ArticleCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-    if(!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier];
-    }
+
+    IssueTableOfContentsTVCell *cell = (IssueTableOfContentsTVCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     
     IssueArticle *article = ((IssueSection *)self.issue.sections[indexPath.section]).articles[indexPath.row];
     
-    cell.textLabel.text = article.title;
+    cell.titleLabel.text = article.title;
+    cell.authorsLabel.text = article.author;
+    cell.pagesLabel.text = article.pages;
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 146.0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
