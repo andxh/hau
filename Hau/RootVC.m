@@ -66,7 +66,8 @@
 
 - (IBAction)viewCurrent:(id)sender
 {
-    
+    NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self showVolumeIssueAtPath:path];
 }
 
 - (void)showVolumeIssueAtPath:(NSIndexPath *)path
