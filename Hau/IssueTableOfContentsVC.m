@@ -11,14 +11,17 @@
 #import "IssueSection.h"
 #import "IssueArticle.h"
 #import "IssueTableOfContentsTVCell.h"
+#import "LoadingTVCell.h"
+#import "ArchiveC.h"
 
-@interface IssueTableOfContentsVC ()
+@interface IssueTableOfContentsVC ()<IssueWatcher>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end
 
 static NSString *const kCellIdentifier = @"ArticleCell";
+static NSString *const kLoadingCellIdentifier = @"LoadingCell";
 
 @implementation IssueTableOfContentsVC
 
@@ -35,8 +38,16 @@ static NSString *const kCellIdentifier = @"ArticleCell";
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    // Tableview Cell
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([IssueTableOfContentsTVCell class])  bundle:nil]
          forCellReuseIdentifier:kCellIdentifier];
+
+    // Loading TVCell
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([LoadingTVCell class])  bundle:nil]
+         forCellReuseIdentifier:kLoadingCellIdentifier];
+    
+    [[ArchiveC ArchiveController] registerIssueWatcher:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,22 +60,29 @@ static NSString *const kCellIdentifier = @"ArticleCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //number of issues in volume
-    return ((IssueSection *)self.issue.sections[section]).articles.count;
+    if(self.issue.sections.count == 0){
+        return 1;
+    } else {
+        return ((IssueSection *)self.issue.sections[section]).articles.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    IssueTableOfContentsTVCell *cell = (IssueTableOfContentsTVCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-    
-    IssueArticle *article = ((IssueSection *)self.issue.sections[indexPath.section]).articles[indexPath.row];
-    
-    cell.titleLabel.text = article.title;
-    cell.authorsLabel.text = article.author;
-    cell.pagesLabel.text = article.pages;
-    
-    return cell;
+    if (self.issue.sections.count == 0) {
+        LoadingTVCell *cell = (LoadingTVCell *)[tableView dequeueReusableCellWithIdentifier:kLoadingCellIdentifier];
+        return cell;
+    } else {
+        IssueTableOfContentsTVCell *cell = (IssueTableOfContentsTVCell *)[tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+        
+        IssueArticle *article = ((IssueSection *)self.issue.sections[indexPath.section]).articles[indexPath.row];
+        
+        cell.titleLabel.text = article.title;
+        cell.authorsLabel.text = article.author;
+        cell.pagesLabel.text = article.pages;
+        
+        return cell;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -74,15 +92,22 @@ static NSString *const kCellIdentifier = @"ArticleCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.issue.sections.count;
+    if (self.issue.sections.count == 0) {
+        return 1;
+    } else {
+        return self.issue.sections.count;
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 //    JournalVolume *jv = self.volumes[section];
 //    return jv.volumeYear;
-    
-    return ((IssueSection *)self.issue.sections[section]).title;
+    if (self.issue.sections.count == 0) {
+        return @"Loading...";
+    } else {
+        return ((IssueSection *)self.issue.sections[section]).title;
+    }
 }
 
 
@@ -92,6 +117,15 @@ static NSString *const kCellIdentifier = @"ArticleCell";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    [self.delegate performSelector:@selector(showIssue:articleAtPath:) withObject:self.issue withObject:indexPath];
+    if (self.issue.sections.count > 0) {
+        [self.delegate performSelector:@selector(showIssue:articleAtPath:) withObject:self.issue withObject:indexPath];
+    }
 }
+
+#pragma mark IssueWatcher protocol methods
+- (void)didUpdateIssue:(VolumeIssue *)issue
+{
+    [self.tableView reloadData];
+}
+
 @end

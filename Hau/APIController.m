@@ -27,7 +27,7 @@ static NSString *const kBaseURL = @"http://www.haujournal.org/index.php/";
 - (NSMutableURLRequest *)GETRequestForEndpoint:(NSString *)endpoint
 {
     NSURL *url = [NSURL URLWithString:endpoint relativeToURL:baseUrl];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:5];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:3 * 60];
     [request setHTTPMethod:@"GET"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 

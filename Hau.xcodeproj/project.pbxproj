@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4909CBC3196AF4C200D57926 /* IssueTableOfContentsTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4909CBC1196AF4C200D57926 /* IssueTableOfContentsTVCell.m */; };
 		4909CBC4196AF4C200D57926 /* IssueTableOfContentsTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4909CBC2196AF4C200D57926 /* IssueTableOfContentsTVCell.xib */; };
+		4910F857197D41A4001D1468 /* LoadingTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4910F855197D41A4001D1468 /* LoadingTVCell.m */; };
+		4910F858197D41A4001D1468 /* LoadingTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4910F856197D41A4001D1468 /* LoadingTVCell.xib */; };
 		49FF19131969E55F00726484 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FF19121969E55F00726484 /* Foundation.framework */; };
 		49FF19151969E55F00726484 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FF19141969E55F00726484 /* CoreGraphics.framework */; };
 		49FF19171969E55F00726484 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FF19161969E55F00726484 /* UIKit.framework */; };
@@ -56,6 +58,9 @@
 		4909CBC0196AF4C200D57926 /* IssueTableOfContentsTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssueTableOfContentsTVCell.h; sourceTree = "<group>"; };
 		4909CBC1196AF4C200D57926 /* IssueTableOfContentsTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssueTableOfContentsTVCell.m; sourceTree = "<group>"; };
 		4909CBC2196AF4C200D57926 /* IssueTableOfContentsTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IssueTableOfContentsTVCell.xib; sourceTree = "<group>"; };
+		4910F854197D41A4001D1468 /* LoadingTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingTVCell.h; sourceTree = "<group>"; };
+		4910F855197D41A4001D1468 /* LoadingTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingTVCell.m; sourceTree = "<group>"; };
+		4910F856197D41A4001D1468 /* LoadingTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingTVCell.xib; sourceTree = "<group>"; };
 		49FF190F1969E55F00726484 /* Hau.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hau.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FF19121969E55F00726484 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		49FF19141969E55F00726484 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -225,6 +230,9 @@
 				4909CBC0196AF4C200D57926 /* IssueTableOfContentsTVCell.h */,
 				4909CBC1196AF4C200D57926 /* IssueTableOfContentsTVCell.m */,
 				4909CBC2196AF4C200D57926 /* IssueTableOfContentsTVCell.xib */,
+				4910F854197D41A4001D1468 /* LoadingTVCell.h */,
+				4910F855197D41A4001D1468 /* LoadingTVCell.m */,
+				4910F856197D41A4001D1468 /* LoadingTVCell.xib */,
 			);
 			name = "Views and VCs";
 			sourceTree = "<group>";
@@ -381,6 +389,7 @@
 			files = (
 				49FF191D1969E55F00726484 /* InfoPlist.strings in Resources */,
 				49FF197A196A048300726484 /* IssueTableOfContentsVC.xib in Resources */,
+				4910F858197D41A4001D1468 /* LoadingTVCell.xib in Resources */,
 				49FF19251969E55F00726484 /* Images.xcassets in Resources */,
 				49FF194C1969E71300726484 /* RootVC.xib in Resources */,
 				49FF197F196A059F00726484 /* IssuesListVC.xib in Resources */,
@@ -418,6 +427,7 @@
 				4909CBC3196AF4C200D57926 /* IssueTableOfContentsTVCell.m in Sources */,
 				49FF19471969E5DF00726484 /* APIController.m in Sources */,
 				49FF196F1969F1DD00726484 /* JournalVolume.m in Sources */,
+				4910F857197D41A4001D1468 /* LoadingTVCell.m in Sources */,
 				49FF1979196A048300726484 /* IssueTableOfContentsVC.m in Sources */,
 				49FF19231969E55F00726484 /* AppDelegate.m in Sources */,
 				49FF191F1969E55F00726484 /* main.m in Sources */,

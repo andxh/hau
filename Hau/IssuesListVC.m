@@ -9,8 +9,9 @@
 #import "IssuesListVC.h"
 #import "JournalVolume.h"
 #import "VolumeIssue.h"
+#import "ArchiveC.h"
 
-@interface IssuesListVC ()
+@interface IssuesListVC ()<VolumeWatcher>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *issues;
@@ -32,6 +33,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [[ArchiveC ArchiveController] registerVolumeWatcher:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,5 +84,11 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.delegate performSelector:@selector(showVolumeIssueAtPath:) withObject:indexPath];
+}
+
+#pragma mark VolumeWatcher protocol method
+-(void)didUpdateVolume:(JournalVolume *)volume
+{
+    [self.tableView reloadData];
 }
 @end

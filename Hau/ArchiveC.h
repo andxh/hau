@@ -11,11 +11,18 @@
 #import "VolumeIssue.h"
 #import "IssueArticle.h"
 
+@protocol VolumeWatcher;
+@protocol IssueWatcher;
+
 @interface ArchiveC : APIController
 
 @property (nonatomic, strong, readonly) NSArray *volumes;
 
 + (instancetype)ArchiveController;
+
+- (void)registerVolumeWatcher:(id<VolumeWatcher>)watcher;
+- (void)registerIssueWatcher:(id<IssueWatcher>)watcher;
+
 
 - (void)updateArchiveIndex;
 
@@ -26,5 +33,18 @@
 - (VolumeIssue *)volumeIssue:(NSIndexPath *)path;
 
 - (void)getPdfForIssue:(VolumeIssue *)issue article:(IssueArticle *)article success:(void(^)(NSString *fileURL))success;
+
+@end
+
+
+@protocol VolumeWatcher <NSObject>
+
+- (void)didUpdateVolume:(JournalVolume *)volume;
+
+@end
+
+@protocol IssueWatcher <NSObject>
+
+- (void)didUpdateIssue:(VolumeIssue *)issue;
 
 @end

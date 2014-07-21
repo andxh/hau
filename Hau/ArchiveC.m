@@ -17,6 +17,14 @@
 
 static NSString *const kVolumesListCacheKey = @"volumes";
 
+@interface ArchiveC ()
+
+@property (nonatomic, strong) NSHashTable *volumeWatchers;
+@property (nonatomic, strong) NSHashTable *issueWatchers;
+
+@end
+
+
 @implementation ArchiveC
 
 + (instancetype)ArchiveController
@@ -27,6 +35,26 @@ static NSString *const kVolumesListCacheKey = @"volumes";
         shared = [[self alloc] init];
     });
     return shared;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if(self){
+        _volumeWatchers = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
+        _issueWatchers = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
+    }
+    return self;
+}
+
+- (void)registerVolumeWatcher:(id<VolumeWatcher>)watcher
+{
+    [self.volumeWatchers addObject:watcher];
+}
+
+- (void)registerIssueWatcher:(id<IssueWatcher>)watcher
+{
+    [self.issueWatchers addObject:watcher];
 }
 
 - (void)updateArchiveIndex
@@ -41,7 +69,7 @@ static NSString *const kVolumesListCacheKey = @"volumes";
                                NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
                                if([httpResponse statusCode] == 200){
-                                   NSLog(@"200 PHOTO response");
+                                   NSLog(@"200 hau/issue/archive response");
                                    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
 
                                    NSString *volumesQ = @"//div[@id='issue']/../.";
@@ -56,8 +84,7 @@ static NSString *const kVolumesListCacheKey = @"volumes";
 
                                } else {
                                    
-                                   
-                                   NSLog(@"Other PHOTO response: %@", responseString);
+                                   NSLog(@"Other hau/issue/archive response: %@\nerror: %@", responseString, connectionError);
                                }
                            }];
 
@@ -144,11 +171,13 @@ static NSString *const kVolumesListCacheKey = @"volumes";
 - (void)updateIssue:(VolumeIssue *)issue
 {
     NSMutableURLRequest *request = [self GETRequestForEndpoint:nil];
+    NSURL *requestURL = nil;
     if(issue.showToc){
-        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/showToc", issue.issueURL]]];
+        requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/showToc", issue.issueURL]];
     } else {
-        [request setURL:[NSURL URLWithString:issue.issueURL]];
+        requestURL = [NSURL URLWithString:issue.issueURL];
     }
+    [request setURL:requestURL];
 
     [NSURLConnection sendAsynchronousRequest:request
                                        queue: [NSOperationQueue mainQueue]
@@ -158,7 +187,7 @@ static NSString *const kVolumesListCacheKey = @"volumes";
                                NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                                
                                if([httpResponse statusCode] == 200){
-                                   NSLog(@"200 PHOTO response");
+                                   NSLog(@"200 %@ response: %@", requestURL, responseString);
                                    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
                                    
                                    NSString *sectionsQ = @"//h4[@class='tocSectionTitle'] | //table[@class='tocArticle']";
@@ -190,8 +219,7 @@ static NSString *const kVolumesListCacheKey = @"volumes";
                                    }
                                } else {
                                    
-                                   
-                                   NSLog(@"Other PHOTO response: %@", responseString);
+                                   NSLog(@"OTHER %@ response: %@\nerror: %@", requestURL, responseString, connectionError);
                                }
                            }];
     
@@ -209,6 +237,8 @@ static NSString *const kVolumesListCacheKey = @"volumes";
 {
     NSString *cacheKey = [self cacheKeyForIssue:issue];
     [[EGOCache documentsCache] setObject:[issue dictionary] forKey:cacheKey withTimeoutInterval:NSUIntegerMax];
+    
+    [self notifyWatchersOfIssue:issue];
 }
 
 
@@ -260,6 +290,26 @@ static NSString *const kVolumesListCacheKey = @"volumes";
         [ret appendFormat:@"%02x",result[i]];
     }
     return ret;
+}
+
+#pragma mark Watchers
+
+- (void)notifyWatchersOfVolume:(JournalVolume *)volume
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        for (id<VolumeWatcher> watcher in self.volumeWatchers){
+            [watcher didUpdateVolume:volume];
+        }
+    });
+}
+
+- (void)notifyWatchersOfIssue:(VolumeIssue *)issue
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        for (id<IssueWatcher> watcher in self.issueWatchers){
+            [watcher didUpdateIssue:issue];
+        }
+    });
 }
 
 @end
