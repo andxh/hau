@@ -22,6 +22,10 @@ static NSString *const kVolumesListCacheKey = @"volumes";
 @property (nonatomic, strong) NSHashTable *volumeWatchers;
 @property (nonatomic, strong) NSHashTable *issueWatchers;
 
+@property (nonatomic, strong) NSMutableDictionary *downloadingIssues;
+@property (nonatomic, strong) NSMutableArray *issueDownloadQueue;
+@property (nonatomic) BOOL isDownloadingIssueArticles;
+
 @end
 
 
@@ -43,6 +47,9 @@ static NSString *const kVolumesListCacheKey = @"volumes";
     if(self){
         _volumeWatchers = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
         _issueWatchers = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
+        _downloadingIssues = [NSMutableDictionary dictionary];
+        _issueDownloadQueue = [NSMutableArray array];
+        _isDownloadingIssueArticles = NO;
     }
     return self;
 }
@@ -241,6 +248,55 @@ static NSString *const kVolumesListCacheKey = @"volumes";
     [self notifyWatchersOfIssue:issue];
 }
 
+- (void)getAllArticlesForIssue:(VolumeIssue *)issue
+{
+    if(![self.downloadingIssues objectForKey:issue.issueURL]){
+        [self.downloadingIssues setObject:issue forKey:issue.issueURL];
+        [self.issueDownloadQueue addObject:issue.issueURL];
+    }
+    
+    [self downloadNextIssueArticle];
+}
+
+- (void)downloadNextIssueArticle
+{
+    if(self.issueDownloadQueue.count){
+        NSString *issueURL = [self.issueDownloadQueue firstObject];
+        VolumeIssue *issue = [self.downloadingIssues objectForKey:issueURL];
+        
+        NSUInteger section = 0;
+        NSUInteger row = 0;
+
+        IssueArticle *article = nil;
+        NSString *pdfFileURL = nil;
+        do {
+            IssueSection *currentSection = (IssueSection*)issue.sections[section];
+            while (row < currentSection.articles.count) {
+                article = (IssueArticle *)((IssueSection*)issue.sections[section]).articles[row];
+                pdfFileURL = article.pdfFileURL;
+                if(!pdfFileURL) break;
+                ++row;
+            }
+            if (pdfFileURL) {
+                ++section;
+                row = 0;
+            }
+        } while (pdfFileURL && section < issue.sections.count);
+        
+        if(!pdfFileURL){
+            if(self.isDownloadingIssueArticles) return;
+            self.isDownloadingIssueArticles = YES;
+            [self getPdfForIssue:issue article:article success:^(NSString *fileURL) {
+                self.isDownloadingIssueArticles = NO;
+                [self downloadNextIssueArticle];
+            }];
+        } else {
+            [self.downloadingIssues removeObjectForKey:issueURL];
+            [self.issueDownloadQueue removeObjectAtIndex:0];
+            [self downloadNextIssueArticle];
+        }
+    }
+}
 
 - (void)getPdfForIssue:(VolumeIssue *)issue article:(IssueArticle *)article success:(void(^)(NSString *fileURL))success
 {

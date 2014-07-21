@@ -39,6 +39,11 @@ static NSString *const kLoadingCellIdentifier = @"LoadingCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    UIBarButtonItem *loadAllPDF = [[UIBarButtonItem alloc] initWithTitle:@"Load All"
+                                                                   style:UIBarButtonItemStyleBordered target:self action:@selector(loadAll)];
+    
+    self.navigationItem.rightBarButtonItem = loadAllPDF;
+    
     // Tableview Cell
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([IssueTableOfContentsTVCell class])  bundle:nil]
          forCellReuseIdentifier:kCellIdentifier];
@@ -55,6 +60,13 @@ static NSString *const kLoadingCellIdentifier = @"LoadingCell";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+-(void)loadAll
+{
+    [[ArchiveC ArchiveController] getAllArticlesForIssue:self.issue];
+}
+
 
 #pragma TableViewDataSource
 

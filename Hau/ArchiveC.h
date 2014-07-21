@@ -32,6 +32,8 @@
 - (void)updateIssue:(VolumeIssue *)issue;
 - (VolumeIssue *)volumeIssue:(NSIndexPath *)path;
 
+- (void)getAllArticlesForIssue:(VolumeIssue *)issue;
+
 - (void)getPdfForIssue:(VolumeIssue *)issue article:(IssueArticle *)article success:(void(^)(NSString *fileURL))success;
 
 @end
