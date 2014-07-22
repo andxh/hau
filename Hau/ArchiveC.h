@@ -34,6 +34,8 @@
 
 - (void)getAllArticlesForIssue:(VolumeIssue *)issue;
 
+- (void)getPdfForIssue:(VolumeIssue *)issue article:(IssueArticle *)article path:(NSIndexPath *)articlePath success:(void(^)(NSString *fileURL))success;
+
 - (void)getPdfForIssue:(VolumeIssue *)issue article:(IssueArticle *)article success:(void(^)(NSString *fileURL))success;
 
 @end
@@ -49,5 +51,6 @@
 @protocol IssueWatcher <NSObject>
 
 - (void)didUpdateIssue:(VolumeIssue *)issue;
+- (void)downloadingIssue:(VolumeIssue *)issue articleAtPath:(NSIndexPath *)path;
 
 @end

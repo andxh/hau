@@ -17,6 +17,7 @@
 @interface IssueTableOfContentsVC ()<IssueWatcher>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSHashTable *downloadingArticles;
 
 @end
 
@@ -30,6 +31,7 @@ static NSString *const kLoadingCellIdentifier = @"LoadingCell";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _downloadingArticles = [NSHashTable hashTableWithOptions:NSPointerFunctionsStrongMemory];
     }
     return self;
 }
@@ -93,6 +95,13 @@ static NSString *const kLoadingCellIdentifier = @"LoadingCell";
         cell.authorsLabel.text = article.author;
         cell.pagesLabel.text = article.pages;
         [cell setPdfFileURL:article.pdfFileURL];
+
+        [cell.loadingSpinner stopAnimating];
+        for(NSIndexPath *path in self.downloadingArticles){
+            if (path.section == indexPath.section && path.row == indexPath.row) {
+                [cell.loadingSpinner startAnimating];
+            }
+        }
         
         return cell;
     }
@@ -138,7 +147,20 @@ static NSString *const kLoadingCellIdentifier = @"LoadingCell";
 #pragma mark IssueWatcher protocol methods
 - (void)didUpdateIssue:(VolumeIssue *)issue
 {
+    [self.downloadingArticles removeAllObjects];
     [self.tableView reloadData];
+}
+
+- (void)downloadingIssue:(VolumeIssue *)issue articleAtPath:(NSIndexPath *)path
+{
+    if( [self.issue.issueURL isEqualToString:issue.issueURL] ){
+        id cell = [self.tableView cellForRowAtIndexPath:path];
+        if(cell && [cell isKindOfClass:[IssueTableOfContentsTVCell class]]){
+            [self.downloadingArticles addObject:path];
+            [[(IssueTableOfContentsTVCell *)cell loadingSpinner] startAnimating];
+            [[(IssueTableOfContentsTVCell *)cell loadingSpinner] setHidden:NO];
+        }
+    }
 }
 
 @end

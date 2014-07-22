@@ -42,11 +42,17 @@ Line 3</string>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="AFH-YI-dFS">
+                        <rect key="frame" x="746" y="42" width="20" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                    </activityIndicatorView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="authorsLabel" destination="gez-jd-Bgt" id="KN8-wl-rBz"/>
                 <outlet property="hasPDFLabel" destination="t1O-CO-kNl" id="SBx-MX-HUb"/>
+                <outlet property="loadingSpinner" destination="AFH-YI-dFS" id="5rg-fU-Zt1"/>
                 <outlet property="pagesLabel" destination="cIY-zp-to0" id="40w-R8-clL"/>
                 <outlet property="titleLabel" destination="lOy-mv-HSq" id="9rk-WQ-Clm"/>
             </connections>

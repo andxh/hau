@@ -99,7 +99,7 @@
     // otherwise, download the pdf
     else {
         __weak RootVC *this = self;
-        [[ArchiveC ArchiveController] getPdfForIssue:issue article:article success:^(NSString *fileURL) {
+        [[ArchiveC ArchiveController] getPdfForIssue:issue article:article path:path success:^(NSString *fileURL) {
             [this showDoc: fileURL];
         }];
     }

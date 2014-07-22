@@ -285,16 +285,23 @@ static NSString *const kVolumesListCacheKey = @"volumes";
         if(!pdfFileURL){
             if(self.isDownloadingIssueArticles) return;
             self.isDownloadingIssueArticles = YES;
-            [self getPdfForIssue:issue article:article success:^(NSString *fileURL) {
+            [self getPdfForIssue:issue article:article path:[NSIndexPath indexPathForRow:row inSection:section] success:^(NSString *fileURL) {
                 self.isDownloadingIssueArticles = NO;
                 [self downloadNextIssueArticle];
             }];
+            
         } else {
             [self.downloadingIssues removeObjectForKey:issueURL];
             [self.issueDownloadQueue removeObjectAtIndex:0];
             [self downloadNextIssueArticle];
         }
     }
+}
+
+- (void)getPdfForIssue:(VolumeIssue *)issue article:(IssueArticle *)article path:(NSIndexPath *)articlePath success:(void(^)(NSString *fileURL))success
+{
+    [self getPdfForIssue:issue article:article success:success];
+    [self notifyWatchersOfDownloadingIssue:(VolumeIssue *)issue articleAtPath:articlePath];
 }
 
 - (void)getPdfForIssue:(VolumeIssue *)issue article:(IssueArticle *)article success:(void(^)(NSString *fileURL))success
@@ -363,6 +370,15 @@ static NSString *const kVolumesListCacheKey = @"volumes";
     dispatch_async(dispatch_get_main_queue(), ^{
         for (id<IssueWatcher> watcher in self.issueWatchers){
             [watcher didUpdateIssue:issue];
+        }
+    });
+}
+
+- (void)notifyWatchersOfDownloadingIssue:(VolumeIssue *)issue articleAtPath:(NSIndexPath *)articlePath
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        for (id<IssueWatcher> watcher in self.issueWatchers){
+            [watcher downloadingIssue:issue articleAtPath:articlePath];
         }
     });
 }

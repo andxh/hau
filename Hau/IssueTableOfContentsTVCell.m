@@ -29,7 +29,7 @@
         [self.hasPDFLabel setHidden:NO];
         self.hasPDFLabel.layer.borderColor = [UIColor greenColor].CGColor;
         self.hasPDFLabel.layer.borderWidth = 4.0;
-        self.hasPDFLabel.layer.cornerRadius = 4.0;
+        self.hasPDFLabel.layer.cornerRadius = 4.0;        
     } else {
         [self.hasPDFLabel setHidden:YES];
     }    

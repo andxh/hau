@@ -13,6 +13,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *authorsLabel;
 @property (nonatomic, weak) IBOutlet UILabel *pagesLabel;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *loadingSpinner;
 @property (nonatomic, weak) IBOutlet UILabel *hasPDFLabel;
 
 - (void)setPdfFileURL:(NSString *)pdfFileURL;
