@@ -92,6 +92,7 @@ static NSString *const kLoadingCellIdentifier = @"LoadingCell";
         cell.titleLabel.text = article.title;
         cell.authorsLabel.text = article.author;
         cell.pagesLabel.text = article.pages;
+        [cell setPdfFileURL:article.pdfFileURL];
         
         return cell;
     }

@@ -132,8 +132,7 @@ static NSString *const kVolumesListCacheKey = @"volumes";
     
     [[EGOCache documentsCache] setObject:vols forKey:kVolumesListCacheKey withTimeoutInterval:NSUIntegerMax];
     
-    // TODO:
-    // notify of update...
+    [self notifyWatchersOfVolumes:volumes];
     
     /*
      journal
@@ -350,11 +349,11 @@ static NSString *const kVolumesListCacheKey = @"volumes";
 
 #pragma mark Watchers
 
-- (void)notifyWatchersOfVolume:(JournalVolume *)volume
+- (void)notifyWatchersOfVolumes:(NSArray *)volumes
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         for (id<VolumeWatcher> watcher in self.volumeWatchers){
-            [watcher didUpdateVolume:volume];
+            [watcher didUpdateVolumes:volumes];
         }
     });
 }

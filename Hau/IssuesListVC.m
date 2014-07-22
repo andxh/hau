@@ -92,4 +92,10 @@
 {
     [self.tableView reloadData];
 }
+
+-(void)didUpdateVolumes:(NSArray *)volumes
+{
+    self.volumes = volumes;
+    [self.tableView reloadData];
+}
 @end

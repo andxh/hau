@@ -42,6 +42,7 @@
 @protocol VolumeWatcher <NSObject>
 
 - (void)didUpdateVolume:(JournalVolume *)volume;
+- (void)didUpdateVolumes:(NSArray *)volumes;
 
 @end
 
